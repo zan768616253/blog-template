@@ -18,7 +18,7 @@ console.log('NODE_ENV =', env);
 
 let config = {
   entry: {
-   client: './client/index.js',
+   client: ['./client/home.js', './both/app.scss'],
    vendor: ['react', 'react-dom', 'redux', 'react-redux', 'react-router', 'react-router-dom', 'react-router-config', 'react-router-redux', 'redux-connect', 'reselect'],
   },
   output: {
@@ -28,10 +28,6 @@ let config = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.bundle\.js$/,
-      //   use: 'bundle-loader'
-      // },
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
@@ -51,19 +47,22 @@ let config = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          use: 'css-loader!sass-loader'
-        }),
-      },
+        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
+      }
     ],
   },
+  resolve: {
+      extensions: ['.js', '.jsx'],
+  },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      minChunks: Infinity,
-    })
-    // new BundleAnalyzerPlugin(),
+      new ExtractTextPlugin({
+          filename:'style.css',
+          allChunks: true
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "vendor",
+        minChunks: Infinity,
+      })
   ]
 };
 
@@ -88,7 +87,9 @@ if (env === 'staged' || env === 'production') {
       NODE_ENV: 'production',
       DEBUG: false,
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin({
+        exclude: ["style.css", "client.js", "vendor.js"],
+    }),
   );
 }
 module.exports = config;

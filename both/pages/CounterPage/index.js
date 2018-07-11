@@ -26,6 +26,7 @@ export default class CounterPage extends React.Component {
     return (
     <section>
       <h1>Obligatory Counter Example!</h1>
+      <img src={"/assets/images/alien.png"} />
       <div>
         <button onClick={this.props.increaseCounter}>+</button>
         <button onClick={this.props.decreaseCounter}>-</button>

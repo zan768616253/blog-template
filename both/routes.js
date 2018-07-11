@@ -1,7 +1,7 @@
 import React from 'react';
 // import loadable from 'loadable-components';
 import App             from './app';
-import HomePage        from './pages/HomePage';
+import HomePage        from './pages/HomePage/home';
 import AboutPage       from './pages/AboutPage';
 import CounterPage     from './pages/CounterPage';
 import BlogLandingPage from './pages/BlogLandingPage';
@@ -20,19 +20,19 @@ const routes = [{
       exact: true,
       component: HomePage,
     },
-    {
-      path : '/about',
-      component: AboutPage,
-    },
-    {
-      path : '/counter',
-      component: CounterPage,
-      routes: [
-        {
-          path : '/counter/:count',
-        },
-      ],
-    },
+    // {
+    //   path : '/about',
+    //   component: AboutPage,
+    // },
+    // {
+    //   path : '/counter',
+    //   component: CounterPage,
+    //   routes: [
+    //     {
+    //       path : '/counter/:count',
+    //     },
+    //   ],
+    // },
     {
       path : '/blog',
       component: BlogLandingPage,
