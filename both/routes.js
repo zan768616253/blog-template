@@ -1,7 +1,7 @@
 import React from 'react';
 // import loadable from 'loadable-components';
 import App             from './app';
-import HomePage        from './pages/HomePage/home';
+import HomePage        from './pages/HomePage';
 import AboutPage       from './pages/AboutPage';
 import CounterPage     from './pages/CounterPage';
 import BlogLandingPage from './pages/BlogLandingPage';
